@@ -8,6 +8,8 @@ metadata:
     chart: {{ template "phpldapadmin.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 
 spec:
   replicas: {{ .Values.replicaCount }}
